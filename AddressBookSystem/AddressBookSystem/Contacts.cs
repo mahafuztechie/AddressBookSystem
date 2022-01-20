@@ -41,7 +41,7 @@ namespace AddressBookSystem
         {
             return lastName;
         }
-        public void GetFirstName(string lastName)
+        public void SetLastName(string lastName)
         {
             this.lastName = lastName;
         }

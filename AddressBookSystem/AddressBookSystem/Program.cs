@@ -14,8 +14,9 @@ AddressBookDetails addressbook  = new AddressBookDetails();
 while (key != "n")
 {
     Console.WriteLine("Select an Option");
-    Console.WriteLine("1 - Addcontact, 2 - Display contact, 3 - deleteContact");
+    Console.WriteLine("1 - Addcontact, 2 - Display contact, 3 - EditContact");
     num = Convert.ToInt32(Console.ReadLine());
+
     switch (num)
     {
         case 1:
@@ -23,6 +24,9 @@ while (key != "n")
             break;
         case 2:
             addressbook.display();
+            break;
+        case 3:
+            addressbook.EditContact();
             break;
     }
     Console.WriteLine("Do u want to continue? Press y/n");
