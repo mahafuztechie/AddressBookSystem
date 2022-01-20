@@ -9,7 +9,7 @@ string key = "z";
 AddressBookDetails addressbook  = new AddressBookDetails();
 
 /// <summary>
-/// implementing a whileLoop with switch case to ask user if he wants to add or display contact
+/// implementing a whileLoop with switch case to ask user if he wants to add or display  or delete or edit contact
 /// </summary>
 while (key != "n")
 {
