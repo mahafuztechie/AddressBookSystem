@@ -34,7 +34,8 @@ namespace AddressBookSystem
             Console.WriteLine("contact added: " +contact);
 
             //adding contact into list
-            allcontacts.Add(contact);  
+            allcontacts.Add(contact);
+            Console.WriteLine("Contact has been added successfully");
         }
 
         // method to display contact
@@ -78,6 +79,7 @@ namespace AddressBookSystem
                     Console.WriteLine("Enter Phone number : ");
                     long phoneNumber = Convert.ToInt64(Console.ReadLine());
                     eachContact.SetPhoneNumber(phoneNumber);
+                    Console.WriteLine("Contact has been Updated successfully");
                     break;
 
                 }
@@ -89,9 +91,30 @@ namespace AddressBookSystem
             }
         }
 
-
-
+        //method to delete Contact from Contact-list
+        public void DeleteContact()
+        {
+            Console.WriteLine("Enter first Name of contact u want to delete");
+            string fName = Console.ReadLine();
+            foreach (Contacts eachContact in allcontacts)
+            {
+                //compare if user entered firtname exist in the contact-list if it exits then delete the contact object from list
+                if (fName == eachContact.GetFirstName())
+                { 
+                    Console.WriteLine("do u really want to delete this contact? Press y/n");
+                    string key = Console.ReadLine();
+                    if(key == "y")
+                    {
+                        allcontacts.Remove(eachContact);
+                        Console.WriteLine("contact has been deleted");
+                        break;
+                    }   
+                }
+                else
+                {
+                    Console.WriteLine("contact does not exist, please enter valid contact First Name");
+                }
+            }
+        }
     }
-
-  
 }
