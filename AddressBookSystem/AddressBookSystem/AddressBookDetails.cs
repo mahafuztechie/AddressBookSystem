@@ -39,12 +39,19 @@ namespace AddressBookSystem
         }
 
         // method to display contact
-        public void display()
+        public void Display()
         {
-            //foreach loop to iterate all contacts from list & print
-            foreach(Contacts contact in allcontacts)
+            if (allcontacts.Count == 0)
             {
-                Console.WriteLine(contact);
+                Console.WriteLine("there are no contacts to display");
+            }
+            else
+            {
+                //foreach loop to iterate all contacts from list & print
+                foreach (Contacts contact in allcontacts)
+                {
+                    Console.WriteLine(contact);
+                }
             }
         }
 

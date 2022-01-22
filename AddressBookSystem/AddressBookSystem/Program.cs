@@ -21,15 +21,18 @@ while (key != "n")
     {
         case 1:
             addressbook.AddContacts();
+            addressbook.Display();
             break;
         case 2:
-            addressbook.display();
+            addressbook.Display();
             break;
         case 3:
             addressbook.EditContact();
+            addressbook.Display();
             break;
         case 4:
             addressbook.DeleteContact();
+            addressbook.Display();
             break;
     }
     Console.WriteLine("Do u want to continue? Press y/n");
