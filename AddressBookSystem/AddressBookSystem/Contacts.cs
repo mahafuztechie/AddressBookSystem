@@ -86,7 +86,7 @@ namespace AddressBookSystem
         {
             if (allcontacts.Count == 0)
             {
-                Console.WriteLine("there are no contacts to display");
+                Console.WriteLine("");
             }
             else
             {
@@ -186,25 +186,21 @@ namespace AddressBookSystem
         }
 
         //serach contact by city or state
-        public void SearchContactByCityOrState()
+        public List<Contacts> SearchContactByCityOrState(string cityOrstate)
         {
-            Console.WriteLine("enter city or state to search contact");
-            string cityOrstate = Console.ReadLine();
+            List<Contacts> con= new List<Contacts>();
             foreach (var contact in allcontacts)
                 {
+                //check if city or state match
                     if (contact.city == cityOrstate || contact.state == cityOrstate)
                     {
+                    //adding each contact to new list if matches
                         Console.WriteLine("Name :" + contact.firstName + " " + contact.lastName + "\nAddress :" + contact.address + "   ZipCode :" + contact.zip + "\nPhone No :" + contact.phoneNumber + "   email Id :" + contact.email);
-                       
+                        con.Add(contact);
                     }
-                    else
-                    {
-                        Console.WriteLine("city or state does not match with any contact");
-                        break;
-                      
-                    }
-                }
-           
+                  
+            }
+            return con;
         }
     }
 }
