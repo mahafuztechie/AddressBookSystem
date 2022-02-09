@@ -18,7 +18,7 @@ namespace AddressBookSystem
                 //tryblock to check if any  exception occur
                 try
                 {
-                    Console.WriteLine("\n1. Display All Contacts\n2. Add New Contact\n3. Edit Contact\n4. Delete Contact\n5. Exit");
+                    Console.WriteLine("\n1. Display All Contacts\n2. Add New Contact\n3. Edit Contact\n4. Delete Contact\n5. Search contact by city or state\n6. Exit");
                     choice = int.Parse(Console.ReadLine());
                     if (choice == 1)
                     {
@@ -37,6 +37,10 @@ namespace AddressBookSystem
                         cont.DeleteContact();
                     }
                     else if (choice == 5)
+                    {
+                        cont.SearchContactByCityOrState();
+                    }
+                    else if (choice == 6)
                     {
                         flag = false;
                     }

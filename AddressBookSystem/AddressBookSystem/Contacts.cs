@@ -185,7 +185,26 @@ namespace AddressBookSystem
             return false;
         }
 
-
-       
+        //serach contact by city or state
+        public void SearchContactByCityOrState()
+        {
+            Console.WriteLine("enter city or state to search contact");
+            string cityOrstate = Console.ReadLine();
+            foreach (var contact in allcontacts)
+                {
+                    if (contact.city == cityOrstate || contact.state == cityOrstate)
+                    {
+                        Console.WriteLine("Name :" + contact.firstName + " " + contact.lastName + "\nAddress :" + contact.address + "   ZipCode :" + contact.zip + "\nPhone No :" + contact.phoneNumber + "   email Id :" + contact.email);
+                       
+                    }
+                    else
+                    {
+                        Console.WriteLine("city or state does not match with any contact");
+                        break;
+                      
+                    }
+                }
+           
+        }
     }
 }
