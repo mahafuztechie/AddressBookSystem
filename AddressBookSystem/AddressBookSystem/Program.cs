@@ -18,7 +18,7 @@ namespace AddressBookSystem
                 //tryblock to check if any  exception occur
                 try
                 {
-                    Console.WriteLine("\n1. Display All Contacts\n2. Add New Contact\n3. Edit Contact\n4. Delete Contact\n5. Search contact by city or state\n6. Exit");
+                    Console.WriteLine("\n1. Display All Contacts\n2. Add New Contact\n3. Edit Contact\n4. Delete Contact\n5. Exit");
                     choice = int.Parse(Console.ReadLine());
                     if (choice == 1)
                     {
@@ -37,12 +37,6 @@ namespace AddressBookSystem
                         cont.DeleteContact();
                     }
                     else if (choice == 5)
-                    {
-                        Console.WriteLine("enter city or state to search contact");
-                        string cityOrstate = Console.ReadLine();
-                        cont.SearchContactByCityOrState(cityOrstate);
-                    }
-                    else if (choice == 6)
                     {
                         flag = false;
                     }
@@ -70,7 +64,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. search over multiple addressbook \n4. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. search over multiple addressbook \n4. person by city \n5. person by state \n6. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -98,9 +92,25 @@ namespace AddressBookSystem
                     }
                     else if(choice == 3)
                     {
-                        switchbook.searchOverMultipleAddressBook();
+                        Console.WriteLine("enter city or state to search contact");
+                        string cityOrstate = Console.ReadLine();
+                        switchbook.GetByCityOrState(cityOrstate);
                     }
                     else if (choice == 4)
+                    {
+                        Console.WriteLine("enter city to search contacts by city");
+                        string city = Console.ReadLine();
+                        switchbook.SetContactByCityDictionary(city);
+                        
+                    }
+                    else if (choice == 5)
+                    {
+                        Console.WriteLine("enter state to search contacts by state");
+                        string state = Console.ReadLine();
+                        switchbook.SetContactByStateDictionary(state);
+                        
+                    }
+                    else if (choice == 6)
                     {
                         flag = false;
                     }

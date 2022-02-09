@@ -10,14 +10,14 @@ namespace AddressBookSystem
     public class Contacts
     {
         //decclaring variabls
-        string firstName { get; set; }
-        string lastName { get; set; }
-        string city { get; set; }
-        string state { get; set; }
-        string address { get; set; }
-        string email { get; set; }
-        int zip { get; set; }
-        long phoneNumber { get; set; }
+        public string firstName { get; set; }
+        public  string lastName { get; set; }
+        public string city { get; set; }
+        public  string state { get; set; }
+        public string address { get; set; }
+        public string email { get; set; }
+        public int zip { get; set; }
+        public long phoneNumber { get; set; }
 
         List<Contacts> allcontacts = new List<Contacts>();
         // creating a a constructor to initialize variables
@@ -190,12 +190,11 @@ namespace AddressBookSystem
         {
             List<Contacts> con= new List<Contacts>();
             foreach (var contact in allcontacts)
-                {
+            {
                 //check if city or state match
                     if (contact.city == cityOrstate || contact.state == cityOrstate)
                     {
                     //adding each contact to new list if matches
-                        Console.WriteLine("Name :" + contact.firstName + " " + contact.lastName + "\nAddress :" + contact.address + "   ZipCode :" + contact.zip + "\nPhone No :" + contact.phoneNumber + "   email Id :" + contact.email);
                         con.Add(contact);
                     }
                   
