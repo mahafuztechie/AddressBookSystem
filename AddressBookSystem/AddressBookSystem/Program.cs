@@ -101,14 +101,26 @@ namespace AddressBookSystem
                         Console.WriteLine("enter city to search contacts by city");
                         string city = Console.ReadLine();
                         switchbook.SetContactByCityDictionary(city);
-                        
+                        //count of contacts in each city
+                        foreach (var conByCity in switchbook.ContactByCity)
+                        {
+                            Console.WriteLine("City :" + conByCity.Key + "   Count :" + conByCity.Value.Count);
+
+                        }
+
                     }
                     else if (choice == 5)
                     {
                         Console.WriteLine("enter state to search contacts by state");
                         string state = Console.ReadLine();
                         switchbook.SetContactByStateDictionary(state);
-                        
+                        //count of all contacts in each state
+                        foreach (var conByState in switchbook.ContactByState)
+                        {
+                            Console.WriteLine("state :" + conByState.Key + "   Count :" + conByState.Value.Count);
+
+                        }
+
                     }
                     else if (choice == 6)
                     {
