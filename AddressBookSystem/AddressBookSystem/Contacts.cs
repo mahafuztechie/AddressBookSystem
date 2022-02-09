@@ -10,9 +10,14 @@ namespace AddressBookSystem
     public class Contacts
     {
         //decclaring variabls
-        string firstName, lastName, city, state, address, email;
-        int zip;
-        long phoneNumber;
+        string firstName { get; set; }
+        string lastName { get; set; }
+        string city { get; set; }
+        string state { get; set; }
+        string address { get; set; }
+        string email { get; set; }
+        int zip { get; set; }
+        long phoneNumber { get; set; }
 
         List<Contacts> allcontacts = new List<Contacts>();
         // creating a a constructor to initialize variables
@@ -32,6 +37,11 @@ namespace AddressBookSystem
         public Contacts()
         {
 
+        }
+        // overriding string method 
+        public override string ToString()
+        {
+            return ("First Name: " + firstName + " Last Name: " + lastName + " City: " + city + " State: " + state + " Address" + address + " zip: " + zip + " Phone Number: " + phoneNumber);
         }
 
         //method to add Contacts
@@ -54,12 +64,21 @@ namespace AddressBookSystem
             int zip = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Phone Number : ");
             long phoneNumber = Convert.ToInt64(Console.ReadLine());
-            Contacts contact = new Contacts(firstName, lastName, city, state, address, email, zip, phoneNumber);
-            Console.WriteLine("contact added: " + contact);
+            //check if contact exist in list
+            if(CheckName(firstName, phoneNumber))
+            {
+                Console.WriteLine("contact already exists, please give another name or number");
+                AddContact();
+            }
+            else
+            {
+                //add contact to list if does not exist already
+                Contacts contact = new Contacts(firstName, lastName, city, state, address, email, zip, phoneNumber);
+                Console.WriteLine("contact added: " + contact);
+                allcontacts.Add(contact);
+                Console.WriteLine("Contact has been added successfully");
 
-            //adding contact into list
-            allcontacts.Add(contact);
-            Console.WriteLine("Contact has been added successfully");
+            }
         }
 
         // method to display contact
@@ -75,7 +94,7 @@ namespace AddressBookSystem
                 Console.WriteLine("Displaying Contacts");
                 foreach (Contacts contact in allcontacts)
                 {
-                    Console.WriteLine(contact.GetFirstName() + "\t" + contact.GetLastName() + "\t" + contact.GetCity() + "\t" + contact.GetEmail() + "\t" + contact.GetAddress() + "\t" + contact.GetZip() + "\t" + contact.GetPhoneNumber());
+                    Console.WriteLine(contact);
                 }
             }
         }
@@ -96,32 +115,31 @@ namespace AddressBookSystem
             foreach (Contacts eachContact in allcontacts)
             {
                 //compare if user entered firtname exist in the contact-list if it exits then let user edit contact
-                if (fName == eachContact.GetFirstName())
+                if (fName == eachContact.firstName)
                 {
                     Console.WriteLine("Enter First Name : ");
                     string firstName = Console.ReadLine();
-                    eachContact.SetFirstName(firstName);
+                    eachContact.firstName = firstName;
                     Console.WriteLine("Enter Last Name : ");
                     string lastName = Console.ReadLine();
-                    eachContact.SetLastName(lastName);
+                    eachContact.lastName = lastName;
                     Console.WriteLine("Enter City: ");
                     string city = Console.ReadLine();
-                    eachContact.SetCity(city);
+                    eachContact.city = city;
                     Console.WriteLine("Enter state Name : ");
                     string state = Console.ReadLine();
-                    eachContact.SetState(state);
+                    eachContact.state = state;
                     Console.WriteLine("Enter Address Name : ");
                     string address = Console.ReadLine();
-                    eachContact.SetAddress(address);
+                    eachContact.address =  address;
                     Console.WriteLine("Enter zip-code : ");
                     int zip = Convert.ToInt32(Console.ReadLine());
-                    eachContact.SetZip(zip);
+                    eachContact.zip = zip;  
                     Console.WriteLine("Enter Phone number : ");
                     long phoneNumber = Convert.ToInt64(Console.ReadLine());
-                    eachContact.SetPhoneNumber(phoneNumber);
+                    eachContact.phoneNumber = phoneNumber;
                     Console.WriteLine("Contact has been Updated successfully");
                     break;
-
                 }
                 else
                 {
@@ -139,7 +157,7 @@ namespace AddressBookSystem
             foreach (Contacts eachContact in allcontacts)
             {
                 //compare if user entered firtname exist in the contact-list if it exits then delete the contact object from list
-                if (fName == eachContact.GetFirstName())
+                if (fName == eachContact.firstName)
                 {
                     Console.WriteLine("do u really want to delete this contact? Press y/n");
                     string key = Console.ReadLine();
@@ -154,78 +172,20 @@ namespace AddressBookSystem
                 Console.WriteLine("contact does not exist, please enter valid contact First Name");
             }
         }
-        //implementing getters & setters
-      
-
-        public String GetFirstName()
+        //return true if contact already exists(check for duplicate)
+        public bool CheckName(string firstName, long phone)
         {
-            return firstName;
-        }
-        public void SetFirstName(string firstName)
-        {
-            this.firstName = firstName;
-        }
-        public String GetLastName()
-        {
-            return lastName;
-        }
-        public void SetLastName(string lastName)
-        {
-            this.lastName = lastName;
-        }
-        public String GetCity()
-        {
-            return city;
-        }
-        public void SetCity(string city)
-        {
-            this.city=city;
-        }
-        public String GetState()
-        {
-            return state;
-        }
-        public void SetState(string state)
-        {
-            this.state=state;
-        }
-        public String GetAddress()
-        {
-            return address;
-        }
-        public void SetAddress(string address)
-        {
-            this.address = address;
-        }
-        public String GetEmail()
-        {
-            return email;
-        }
-        public void SetEmail(string email)
-        {
-            this.email=email;
-        }
-        public int GetZip()
-        {
-            return zip;
-        }
-        public void SetZip(int zip)
-        {
-            this.zip = zip;
-        }
-        public long GetPhoneNumber()
-        {
-            return phoneNumber;
-        }
-        public void SetPhoneNumber(long phoneNumber)
-        {
-             this.phoneNumber = phoneNumber;
+            foreach (Contacts c in allcontacts)
+            {
+                if (c.firstName.Equals(firstName) || c.phoneNumber.Equals(phone))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        // overriding string method 
-        public override string ToString()
-        {
-            return ("First Name: " + firstName + " Last Name: " + lastName + " City: " + city + " State: " + state + " Address" + address + " zip: " + zip + " Phone Number: " + phoneNumber);
-        }
+
+       
     }
 }
