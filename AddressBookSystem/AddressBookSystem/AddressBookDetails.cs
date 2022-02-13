@@ -75,18 +75,18 @@ namespace AddressBookSystem
 
             foreach (string c in cities)
             {
-                List<Contacts> contact = new List<Contacts>();
+                List<Contacts> contacts = new List<Contacts>();
                 foreach (var addressBook in switchAddressBook)
                 {
-                    contact.AddRange(addressBook.Value.SearchContactByCityOrState(city));
+                    contacts.AddRange(addressBook.Value.SearchContactByCityOrState(city));
                 }
                 if (ContactByCity.ContainsKey(c))
                 {
-                    ContactByCity[c] = contact;
+                    ContactByCity[c] = contacts;
                 }
                 else
                 {
-                    ContactByCity.Add(c, contact);
+                    ContactByCity.Add(c, contacts);
                 }
             }
             ViewPersonsByCity(city);
@@ -98,18 +98,18 @@ namespace AddressBookSystem
 
             foreach (string s in states)
             {
-                List<Contacts> contact = new List<Contacts>();
+                List<Contacts> contacts = new List<Contacts>();
                 foreach (var addressBook in switchAddressBook)
                 {
-                    contact.AddRange(addressBook.Value.SearchContactByCityOrState(state));
+                    contacts.AddRange(addressBook.Value.SearchContactByCityOrState(state));
                 }
                 if (ContactByState.ContainsKey(s))
                 {
-                    ContactByState[s] = contact;
+                    ContactByState[s] = contacts;
                 }
                 else
                 {
-                    ContactByState.Add(s, contact);
+                    ContactByState.Add(s, contacts);
                 }
             }
            ViewPersonsByState(state);
@@ -148,5 +148,6 @@ namespace AddressBookSystem
             }
         }
 
+       
     }
 }

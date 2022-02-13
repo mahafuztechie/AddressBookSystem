@@ -92,10 +92,11 @@ namespace AddressBookSystem
             {
                 //foreach loop to iterate all contacts from list & print
                 Console.WriteLine("Displaying Contacts");
-                foreach (Contacts contact in allcontacts)
-                {
-                    Console.WriteLine(contact);
-                }
+                //foreach (Contacts contact in allcontacts)
+                //{
+                //    Console.WriteLine(contact);
+                //}
+                SortByName();
             }
         }
         //public void DisplayAddressBook()
@@ -200,6 +201,41 @@ namespace AddressBookSystem
                   
             }
             return con;
+        }
+
+        //sort by Name
+        public void SortByName()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.firstName.CompareTo(contact2.firstName));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+               
+            }
+        }
+        public void SortByCity()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.city.CompareTo(contact2.city));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public void SortByState()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.state.CompareTo(contact2.state));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public void SortByZipCode()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.zipCode.CompareTo(contact2.zip));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+            }
         }
     }
 }
