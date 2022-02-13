@@ -82,7 +82,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. person by city \n5. person by state \n6. write Contacts to Text File \n7. read from text file \n8. Write & Read Contacts with in CSV File \n9. read from csv file \n10. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -203,6 +203,26 @@ namespace AddressBookSystem
                             Console.WriteLine("Data read successfully");
                     }
                     else if (choice == 10)
+                    {
+                        Console.WriteLine("Enter the Address Book Name:");
+                        string nameJSON = Console.ReadLine();
+                        var allbooks = switchbook.getAllAddressBook();
+                        if (allbooks.ContainsKey(nameJSON))
+                        {
+                            JsonHandler.WriteIntoJSONFile(allbooks, nameJSON);
+                            Console.WriteLine("Data inserted successfully");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Book Name Not Found");
+                        }
+                    }
+                    else if(choice == 11)
+                    {
+                        JsonHandler.ReadFromJSONFile();
+                        Console.WriteLine("Data read successfully");
+                    }
+                    else if (choice == 12)
                     {
                         flag = false;
                     }
