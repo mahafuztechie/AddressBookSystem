@@ -213,29 +213,6 @@ namespace AddressBookSystem
                
             }
         }
-        public void SortByCity()
-        {
-            allcontacts.Sort((contact1, contact2) => contact1.city.CompareTo(contact2.city));
-            foreach (Contacts c in allcontacts)
-            {
-                Console.WriteLine(c.ToString());
-            }
-        }
-        public void SortByState()
-        {
-            allcontacts.Sort((contact1, contact2) => contact1.state.CompareTo(contact2.state));
-            foreach (Contacts c in allcontacts)
-            {
-                Console.WriteLine(c.ToString());
-            }
-        }
-        public void SortByZipCode()
-        {
-            allcontacts.Sort((contact1, contact2) => contact1.zipCode.CompareTo(contact2.zip));
-            foreach (Contacts c in allcontacts)
-            {
-                Console.WriteLine(c.ToString());
-            }
-        }
+       
     }
 }
