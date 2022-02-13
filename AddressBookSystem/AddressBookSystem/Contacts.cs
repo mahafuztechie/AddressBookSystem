@@ -100,6 +100,18 @@ namespace AddressBookSystem
                
             }
         }
+        public List<Contacts> getContacts()
+        {
+            if (allcontacts.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                //foreach loop to iterate all contacts from list & print
+              return allcontacts;
+            }
+        }
         //public void DisplayAddressBook()
         //{
         //    Console.WriteLine("Displaying Contacts");

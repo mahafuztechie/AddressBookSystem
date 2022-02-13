@@ -6,6 +6,7 @@ namespace AddressBookSystem
 {
     class Program
     {
+        public static string filePath = @"C:\Users\dell\source\repos\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookSystem\ContactList.txt";
         //method to perform all CRUD operations on Contacts
         public static void AddressBook(Contacts cont)
         {
@@ -70,6 +71,7 @@ namespace AddressBookSystem
         }
         static void Main(string[] args)
         {
+            
             AddressBookDetails switchbook = new AddressBookDetails();
 
             bool flag = true;
@@ -80,7 +82,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. search over multiple addressbook \n4. person by city \n5. person by state \n6. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. person by city \n5. person by state \n6. write Contacts to Text File \n7. read from text file \n8. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -106,11 +108,9 @@ namespace AddressBookSystem
                         else
                             Console.WriteLine("There is no Book with name " + addressBookName);
                     }
-                    else if(choice == 3)
+                    else if (choice == 3)
                     {
-                        Console.WriteLine("enter city or state to search contact");
-                        string cityOrstate = Console.ReadLine();
-                        switchbook.GetByCityOrState(cityOrstate);
+                        switchbook.DisplayAllAddressBook();
                     }
                     else if (choice == 4)
                     {
@@ -139,6 +139,50 @@ namespace AddressBookSystem
 
                     }
                     else if (choice == 6)
+                    {
+                        // writing to text file if file exists
+                        if (File.Exists(filePath))
+                        {
+                            using (StreamWriter stw = File.CreateText(filePath))
+                            {
+                                foreach (KeyValuePair<string, Contacts> kv in switchbook.getAllAddressBook())
+                                {
+                                    string a = kv.Key;
+
+                                    stw.WriteLine("Address Book Name: " + a);
+                                    foreach (Contacts c in kv.Value.getContacts())
+                                    {
+                                        stw.WriteLine(c);
+                                    }
+                                }
+                                Console.WriteLine("Address Book written into the file successfully!!!");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("File doesn't exist!!!");
+                        }
+                    }
+                    else if (choice == 7)
+                    {
+                        //reading from text file if Exists
+                        if (File.Exists(filePath))
+                        {
+                            using (StreamReader str = File.OpenText(filePath))
+                            {
+                                string s = "";
+                                while ((s = str.ReadLine()) != null)
+                                {
+                                    Console.WriteLine(s);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("File doesn't exist!!!");
+                        }
+                    }
+                    else if (choice == 8)
                     {
                         flag = false;
                     }

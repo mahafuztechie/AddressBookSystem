@@ -44,6 +44,23 @@ namespace AddressBookSystem
             }
             return null;
         }
+
+        public void DisplayAllAddressBook()
+        {
+
+            foreach (var item in switchAddressBook)
+            {
+
+                Console.WriteLine(item.Key);
+                    
+            }
+            
+        }
+        public Dictionary<string, Contacts> getAllAddressBook()
+        {
+            return switchAddressBook;
+
+        }
         //search contact over multiple addressbook
         public void GetByCityOrState(string cityOrstate)
         {
