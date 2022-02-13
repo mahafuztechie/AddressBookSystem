@@ -82,7 +82,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. person by city \n5. person by state \n6. write Contacts to Text File \n7. read from text file \n8. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. person by city \n5. person by state \n6. write Contacts to Text File \n7. read from text file \n8. Write & Read Contacts with in CSV File \n9. read from csv file \n10. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -182,7 +182,27 @@ namespace AddressBookSystem
                             Console.WriteLine("File doesn't exist!!!");
                         }
                     }
-                    else if (choice == 8)
+                    else if(choice == 8)
+                    {
+                        Console.WriteLine("Enter the Address Book Name:");
+                        string name = Console.ReadLine();
+                        var allbooks = switchbook.getAllAddressBook();
+                        if (allbooks.ContainsKey(name))
+                        {
+                            CSVHandler.WriteIntoCSVFile(allbooks, name);
+                            Console.WriteLine("Data inserted successfully");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Book Name Not Found");
+                        }
+                    }
+                    else if (choice == 9)
+                    {
+                            CSVHandler.ReadFromCSVFile();
+                            Console.WriteLine("Data read successfully");
+                    }
+                    else if (choice == 10)
                     {
                         flag = false;
                     }
@@ -190,7 +210,8 @@ namespace AddressBookSystem
                     {
                         Console.WriteLine("Invalid Input");
                     }
-                }
+                    }
+                    
                 // catch block to handle exception
                 catch (Exception e)
                 {

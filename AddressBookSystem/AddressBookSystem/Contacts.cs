@@ -41,7 +41,7 @@ namespace AddressBookSystem
         // overriding string method 
         public override string ToString()
         {
-            return ("First Name: " + firstName + " Last Name: " + lastName + " City: " + city + " State: " + state + " Address" + address + " zip: " + zip + " Phone Number: " + phoneNumber);
+            return ("First Name: " + firstName + " Last Name: " + lastName + " City: " + city + " State: " + state + " Address: " + address + " zip: " + zip + " Phone Number: " + phoneNumber);
         }
 
         //method to add Contacts
@@ -100,6 +100,7 @@ namespace AddressBookSystem
                
             }
         }
+        // return the list of Contacts
         public List<Contacts> getContacts()
         {
             if (allcontacts.Count == 0)
@@ -108,7 +109,6 @@ namespace AddressBookSystem
             }
             else
             {
-                //foreach loop to iterate all contacts from list & print
               return allcontacts;
             }
         }
