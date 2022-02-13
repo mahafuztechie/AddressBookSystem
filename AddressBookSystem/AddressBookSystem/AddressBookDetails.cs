@@ -80,6 +80,7 @@ namespace AddressBookSystem
                 {
                     contacts.AddRange(addressBook.Value.SearchContactByCityOrState(city));
                 }
+                Contacts.SortByName(contacts);
                 if (ContactByCity.ContainsKey(c))
                 {
                     ContactByCity[c] = contacts;
@@ -103,6 +104,7 @@ namespace AddressBookSystem
                 {
                     contacts.AddRange(addressBook.Value.SearchContactByCityOrState(state));
                 }
+                Contacts.SortByName(contacts);
                 if (ContactByState.ContainsKey(s))
                 {
                     ContactByState[s] = contacts;

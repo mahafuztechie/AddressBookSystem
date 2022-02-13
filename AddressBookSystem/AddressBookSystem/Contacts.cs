@@ -79,6 +79,7 @@ namespace AddressBookSystem
                 Console.WriteLine("Contact has been added successfully");
 
             }
+            SortByName(allcontacts);
         }
 
         // method to display contact
@@ -92,11 +93,11 @@ namespace AddressBookSystem
             {
                 //foreach loop to iterate all contacts from list & print
                 Console.WriteLine("Displaying Contacts");
-                //foreach (Contacts contact in allcontacts)
-                //{
-                //    Console.WriteLine(contact);
-                //}
-                SortByName();
+                foreach (Contacts contact in allcontacts)
+                {
+                    Console.WriteLine(contact);
+                }
+               
             }
         }
         //public void DisplayAddressBook()
@@ -202,17 +203,50 @@ namespace AddressBookSystem
             }
             return con;
         }
-
-        //sort by Name
+        //sort by name default List
         public void SortByName()
         {
             allcontacts.Sort((contact1, contact2) => contact1.firstName.CompareTo(contact2.firstName));
             foreach (Contacts c in allcontacts)
             {
                 Console.WriteLine(c.ToString());
+
+            }
+        }
+
+        //sort by Name with paramater list
+        public static void SortByName(List<Contacts> ContactList)
+        {
+            ContactList.Sort((contact1, contact2) => contact1.firstName.CompareTo(contact2.firstName));
+            foreach (Contacts c in ContactList)
+            {
+                Console.WriteLine(c.ToString());
                
             }
         }
-       
+        public void SortByCity()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.city.CompareTo(contact2.city));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public void SortByState()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.state.CompareTo(contact2.state));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        public void SortByZipCode()
+        {
+            allcontacts.Sort((contact1, contact2) => contact1.zip.CompareTo(contact2.zip));
+            foreach (Contacts c in allcontacts)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
     }
 }

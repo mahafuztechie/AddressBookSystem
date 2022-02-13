@@ -18,7 +18,7 @@ namespace AddressBookSystem
                 //tryblock to check if any  exception occur
                 try
                 {
-                    Console.WriteLine("\n1. Display All Contacts\n2. Add New Contact\n3. Edit Contact\n4. Delete Contact\n5. Exit");
+                    Console.WriteLine("\n1. Display All Contacts\n2. Add New Contact\n3. Edit Contact\n4. Delete Contact\n5. sort by name \n6. sort by city\n7. sort by state \n8. sort by zipcode\n9.  Exit");
                     choice = int.Parse(Console.ReadLine());
                     if (choice == 1)
                     {
@@ -37,6 +37,22 @@ namespace AddressBookSystem
                         cont.DeleteContact();
                     }
                     else if (choice == 5)
+                    {
+                        cont.SortByName();
+                    }
+                    else if (choice == 6)
+                    {
+                        cont.SortByCity();
+                    }
+                    else if (choice == 7)
+                    {
+                        cont.SortByState();
+                    }
+                    else if (choice == 8)
+                    {
+                        cont.SortByZipCode();
+                    }
+                    else if (choice == 9)
                     {
                         flag = false;
                     }
