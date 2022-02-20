@@ -131,5 +131,50 @@ namespace AddressBookSystem
                 connection.Close();
             }
         }
+
+        //retrieve by city or state
+        public void RetrieveByCityOrState()
+        {
+            try
+            {
+                ContactsModel cdb = new ContactsModel();
+                SqlConnection connection = new SqlConnection(connectionString);
+                string query = "select * from contact where city = 'New York' or state = 'Maharashtra';";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+                        cdb.firstname = reader.GetString(0);
+                        cdb.lastname = reader.GetString(1);
+                        cdb.city = reader.GetString(3);
+                        cdb.state = reader.GetString(4);
+                        cdb.phone = reader.GetString(6);
+                        Console.WriteLine(cdb.firstname+" "+cdb.lastname+" "+ cdb.city + " " + cdb.state + " " + cdb.phone);
+                    }
+                  
+                }
+                else
+                {
+                    Console.WriteLine("No contacts match the City or State");
+                }
+                reader.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }

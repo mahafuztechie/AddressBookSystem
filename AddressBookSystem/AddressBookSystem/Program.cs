@@ -84,7 +84,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. retrive Contacts from database \n13. Update to Database \n14. alter table with startDate \n20. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. retrive Contacts from database \n13. Update to Database \n14. alter table with startDate \n15. Retrive data by city or state from database \n20. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -235,6 +235,10 @@ namespace AddressBookSystem
                     else if (choice == 14)
                     {
                         addressBookRepo.AddDateField();
+                    }
+                    else if (choice == 15)
+                    {
+                        addressBookRepo.RetrieveByCityOrState();
                     }
                     else if (choice == 20)
                     {
