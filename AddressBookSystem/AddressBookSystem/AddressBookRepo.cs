@@ -12,6 +12,7 @@ namespace AddressBookSystem
         public static string connectionString = @"Data Source=DESKTOP-SBPIUH9;Initial Catalog=AddressBookService;Integrated Security=True";
         public static SqlConnection connection = null;
 
+        // get all contacts from database
        public  ContactsModel GetAllContacts()
         {
 
@@ -21,7 +22,7 @@ namespace AddressBookSystem
                 {
 
                     ContactsModel cdb = new ContactsModel();
-
+                    //query
                     string query = @"select c.first_name, c.last_name, c.city, c.phone_no, b.bk_name, b.bk_type 
                                  from contact c inner join booknametype b on c.book_id = b.book_id WHERE LOWER(c.first_name)='shakira';";
 
@@ -30,7 +31,7 @@ namespace AddressBookSystem
                     connection.Open();
 
                     SqlDataReader reader = command.ExecuteReader();
-
+                    //reader the rows
                     if (reader.HasRows)
                     {
                         while (reader.Read())
@@ -63,6 +64,7 @@ namespace AddressBookSystem
             }
         }
 
+        //update Contact with State
         public string UpdateContactToDatabase()
         {
             string state = "";
@@ -101,6 +103,31 @@ namespace AddressBookSystem
             finally
             {
                 SqlConnection connection = new SqlConnection(connectionString);
+                connection.Close();
+            }
+        }
+
+        //add new field as startdate to contact table
+        public void AddDateField()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                string query = "ALTER TABLE contact ADD StartDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP; ";
+                  
+
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+
+                command.ExecuteReader();
+              
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);   
+            }
+            finally
+            {
                 connection.Close();
             }
         }
