@@ -8,6 +8,7 @@ namespace AddressBookSystem
     {
         public static string filePath = @"C:\Users\dell\source\repos\AddressBookSystem\AddressBookSystem\AddressBookSystem\AddressBookSystem\ContactList.txt";
         //method to perform all CRUD operations on Contacts
+
         public static void AddressBook(Contacts cont)
         {
             bool flag = true;
@@ -71,7 +72,8 @@ namespace AddressBookSystem
         }
         static void Main(string[] args)
         {
-            
+            AddressBookRepo addressBookRepo = new AddressBookRepo();
+           
             AddressBookDetails switchbook = new AddressBookDetails();
 
             bool flag = true;
@@ -82,7 +84,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. retrive Contacts from database \n20. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -222,7 +224,11 @@ namespace AddressBookSystem
                         JsonHandler.ReadFromJSONFile();
                         Console.WriteLine("Data read successfully");
                     }
-                    else if (choice == 12)
+                    else if(choice == 12)
+                    {
+                        addressBookRepo.GetAllContacts();
+                    }
+                    else if (choice == 20)
                     {
                         flag = false;
                     }
