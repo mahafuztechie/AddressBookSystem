@@ -68,14 +68,11 @@ namespace AddressBookSystem
         public string UpdateContactToDatabase()
         {
             string state = "";
+            string query = "update contact set State = 'California' where first_name = 'rosa';" +
+                               "select * from contact c where first_name = 'rosa';";
             try
             {
-                SqlConnection connection = new SqlConnection(connectionString);
-                string query = "update contact set State = 'California' where first_name = 'rosa';" +
-                                "select * from contact c where first_name = 'rosa';";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
+               SqlCommand command = ReturnSqlCommand(query);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -135,15 +132,11 @@ namespace AddressBookSystem
         //retrieve by city or state
         public void RetrieveByCityOrState()
         {
+            string query = "select * from contact where city = 'New York' or state = 'Maharashtra';";
+            ContactsModel cdb = new ContactsModel();
             try
             {
-                ContactsModel cdb = new ContactsModel();
-                SqlConnection connection = new SqlConnection(connectionString);
-                string query = "select * from contact where city = 'New York' or state = 'Maharashtra';";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-
+                SqlCommand command = ReturnSqlCommand(query);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
@@ -176,5 +169,52 @@ namespace AddressBookSystem
                 connection.Close();
             }
         }
+
+        public static SqlCommand ReturnSqlCommand(string query)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            return command;
+
+        }
+        // add new Contact to database
+        public void AddNewContact()
+        {
+            string first_Name = "";
+            string query = "INSERT INTO contact (first_name,last_name,address,city,state,zip,phone_no,email,book_id) VALUES('Papa','React','whitefield','bangalore','karnataka',560084,'999887765','papareact@gmail.com','BK3');"+
+                "select * from contact c where first_name = 'Papa';";
+            
+            try
+            {
+                SqlCommand command = ReturnSqlCommand(query);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        first_Name = reader.GetString(0);
+                        Console.WriteLine("First Name : " +first_Name);
+                    }
+                    Console.WriteLine("Contact is added");
+                }
+                else
+                {
+                    Console.WriteLine("Contact is not added");
+                }
+                reader.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
     }
 }

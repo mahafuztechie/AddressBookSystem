@@ -84,7 +84,7 @@ namespace AddressBookSystem
                 //tryblock to check any if exceptions occur
                 try
                 {
-                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. retrive Contacts from database \n13. Update to Database \n14. alter table with startDate \n15. Retrive data by city or state from database \n20. Exit");
+                    Console.WriteLine("\n1. Create New Address Book \n2. Use Existing Address Book   \n3. Display all Address book \n4. Person by city \n5. Person by state \n6. write Contacts to Text File \n7. Read from text file \n8. Write Contacts in CSV File \n9. Read from csv file \n10. Write in json file \n11. Read from Json file \n12. retrive Contacts from database \n13. Update to Database \n14. alter table with startDate \n15. Retrive data by city or state from database \n20. add new Contact to Database \n25. Exit");
                     choice = int.Parse(Console.ReadLine());
                     //creating New address book
                     if (choice == 1)
@@ -184,7 +184,7 @@ namespace AddressBookSystem
                             Console.WriteLine("File doesn't exist!!!");
                         }
                     }
-                    else if(choice == 8)
+                    else if (choice == 8)
                     {
                         Console.WriteLine("Enter the Address Book Name:");
                         string name = Console.ReadLine();
@@ -201,8 +201,8 @@ namespace AddressBookSystem
                     }
                     else if (choice == 9)
                     {
-                            CSVHandler.ReadFromCSVFile();
-                            Console.WriteLine("Data read successfully");
+                        CSVHandler.ReadFromCSVFile();
+                        Console.WriteLine("Data read successfully");
                     }
                     else if (choice == 10)
                     {
@@ -219,12 +219,12 @@ namespace AddressBookSystem
                             Console.WriteLine("Book Name Not Found");
                         }
                     }
-                    else if(choice == 11)
+                    else if (choice == 11)
                     {
                         JsonHandler.ReadFromJSONFile();
                         Console.WriteLine("Data read successfully");
                     }
-                    else if(choice == 12)
+                    else if (choice == 12)
                     {
                         addressBookRepo.GetAllContacts();
                     }
@@ -242,14 +242,18 @@ namespace AddressBookSystem
                     }
                     else if (choice == 20)
                     {
+                        addressBookRepo.AddNewContact();
+                    }
+                    else if (choice == 25)
+                    {
                         flag = false;
                     }
                     else
                     {
                         Console.WriteLine("Invalid Input");
                     }
-                    }
-                    
+                }
+
                 // catch block to handle exception
                 catch (Exception e)
                 {
