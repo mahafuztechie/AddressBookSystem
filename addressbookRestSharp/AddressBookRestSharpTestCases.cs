@@ -66,8 +66,8 @@ namespace addressbookRestSharp
                 address= "Sidewalk 3/41",
                 city= "Lockenwille",
                 state= "WoodLer",
-                zip= "521432",
-                phone= "7548965265",
+                zip= 521432,
+                phone= 7548965265,
                 email= "kylie@gmail.com"
 
              });
@@ -82,9 +82,38 @@ namespace addressbookRestSharp
             Assert.AreEqual("Sidewalk 3/41", dataResponse.address);
             Assert.AreEqual("Lockenwille", dataResponse.city);
             Assert.AreEqual("WoodLer", dataResponse.state);
-            Assert.AreEqual("521432", dataResponse.zip);
-            Assert.AreEqual("7548965265", dataResponse.phone);
+            Assert.AreEqual(521432, dataResponse.zip);
+            Assert.AreEqual(7548965265, dataResponse.phone);
             Assert.AreEqual("kylie@gmail.com", dataResponse.email);
+        }
+
+        [TestMethod]
+        public void GivenAddressBook_OnPut_ShouldReturnUpdatedAddressDetails()
+        {
+            // arrange
+            RestRequest request = new RestRequest("/Contacts/2", Method.Put);
+            request.AddHeader("Content-type", "application/json");
+            request.AddJsonBody(
+            new
+            {
+                firstname = "elon",
+                lastname = "musk",
+                address = "canada",
+                city = "abc",
+                state = "xyz",
+                zip = 56789,
+                phone = 9988776655,
+                email = "elon@musk.com"
+
+            });
+            // act
+            RestResponse response = client.ExecuteAsync(request).Result;
+
+            // assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+            Contacts dataResponse = JsonConvert.DeserializeObject<Contacts>(response.Content);
+            Assert.AreEqual("elon", dataResponse.firstname);
+            Assert.AreEqual("elon@musk.com", dataResponse.email);
         }
     }
 }
