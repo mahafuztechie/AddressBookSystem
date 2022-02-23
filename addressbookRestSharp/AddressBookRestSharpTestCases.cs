@@ -15,8 +15,8 @@ namespace addressbookRestSharp
         public string address { get; set; }
         public string city { get; set; }
         public string state { get; set; }
-        public string zip { get; set; }
-        public string phone { get; set; }
+        public int zip { get; set; }
+        public long phone { get; set; }
         public string email { get; set; }
     }
     [TestClass]
@@ -114,6 +114,19 @@ namespace addressbookRestSharp
             Contacts dataResponse = JsonConvert.DeserializeObject<Contacts>(response.Content);
             Assert.AreEqual("elon", dataResponse.firstname);
             Assert.AreEqual("elon@musk.com", dataResponse.email);
+        }
+
+        [TestMethod]
+        public void GivenEmployee_OnDelete_ShouldReturnSuccess()
+        {
+            // arrange
+            RestRequest request = new RestRequest("/Contacts/4", Method.Delete);
+
+            // act
+            RestResponse response = client.ExecuteAsync(request).Result;
+
+            // assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
         }
     }
 }
